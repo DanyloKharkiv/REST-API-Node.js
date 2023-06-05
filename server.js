@@ -1,10 +1,18 @@
-const app = require('./app')
+const mongoose = require("mongoose");
 
-app.listen(3000, () => {
-  console.log("Server running. Use our API on port: 3000")
-})
+const app = require("./app");
 
+const { DB_URI, PORT = 3000 } = process.env;
 
+mongoose
+  .connect(DB_URI)
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log("Database connection successful");
+    });
+  })
+  .catch((error) => {
+    console.log(error.message);
+    process.exit(1);
+  });
 
-// BIhP6K5swm81XZiG
-const DBBASE = "mongodb+srv://danylo_kharkiv:BIhP6K5swm81XZiG@cluster0.pnhytyt.mongodb.net/?retryWrites=true&w=majority";
