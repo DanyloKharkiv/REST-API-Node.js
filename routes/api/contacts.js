@@ -1,5 +1,6 @@
 const express = require("express");
 
+
 const { isValidId } = require("../../middlewares");
 
 const router = express.Router();
@@ -21,5 +22,6 @@ router.patch(
   isValidId,
   contactsController.updateStatusContact
 );
+
 
 module.exports = router;
